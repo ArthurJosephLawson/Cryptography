@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# ===== CRYPTOGRAPHER BANNER =====
 print_banner() {
     local -a _cb_art=(
         '_________                        __                                    .__'

@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-# ===== CRYPTOGRAPHER BANNER =====
 print_banner() {
     local -a _cb_art=(
-        '_________                        __                                    .__'
-        '\_   ___ \_______ ___.__._______/  |_  ____   ________________  ______ |  |__ ___.__./'
-        '/    \/\_  __ <   |  |\____ \   __\/  _ \ / ___\_  __ \__  \ \____ \|  |  <   |  |'
-        '\     \____|  | \/\___  ||  |_> >  | (  <_> ) /_/  >  | \// __ \|  |_> >   Y  \___  |'
-        ' \______  /|__|   / ____||   __/|__|  \____/\___  /|__|  (____  /   __/|___|  / ____|'
-        '        \/        \/     |__|                /_____/          \/|__|        \/\/'
+'_________                        __                                    .__            '
+'\_   ___ \_______ ___.__._______/  |_  ____   ________________  ______ |  |__ ___.__.'
+'/    \  \/\_  __ <   |  |\____ \   __\/  _ \ / ___\_  __ \__  \ \____ \|  |  <   |  |'
+'\     \____|  | \/\___  ||  |_> >  | (  <_> ) /_/  >  | \// __ \|  |_> >   Y  \___  |'
+' \______  /|__|   / ____||   __/|__|  \____/\___  /|__|  (____  /   __/|___|  / ____|'
+'        \/        \/     |__|                /_____/          \/|__|        \/\/     '
     )
     local -a _cb_tc=( '0;255;255' '0;204;255' '0;153;255' '51;102;255' '102;51;255' '153;51;255' )
     local -a _cb_c8=( 51 45 39 63 99 135 )
@@ -47,12 +46,11 @@ print_banner() {
     for _cb_l in "${_cb_art[@]}"; do
         [ "${#_cb_l}" -gt "$_cb_w" ] && _cb_w=${#_cb_l}
     done
-    _cb_w=$((_cb_w + 2))
+
+    [ "$_cb_w" -lt 70 ] && _cb_w=70
 
     for ((_cb_i = 0; _cb_i < _cb_w + 2; _cb_i++)); do
         _cb_bar+="$_cb_h"
-    done
-    for ((_cb_i = 0; _cb_i < 50; _cb_i++)); do
         _cb_rule+='-'
     done
 
@@ -69,48 +67,46 @@ print_banner() {
         elif [ "$_cb_tc_on" = 1 ]; then _cb_c=$'\033[1;38;2;'"${_cb_tc[$_cb_i]}"$'m'
         else _cb_c=$'\033[1;38;5;'"${_cb_c8[$_cb_i]}"$'m'
         fi
-        printf '%s%s%s %-*s%s %s%s%s\n' \
+        printf '%s%s %s%-*s%s %s%s\n' \
             "$_cb_frm" "$_cb_v" "$_cb_c" "$_cb_w" "${_cb_art[$_cb_i]}" \
-            "$_cb_rst" "$_cb_frm" "$_cb_v" "$_cb_rst"
+            "$_cb_rst$_cb_frm" "$_cb_v" "$_cb_rst"
     done
 
     printf '%s%s %*s %s%s\n' "$_cb_frm" "$_cb_v" "$_cb_w" '' "$_cb_v" "$_cb_rst"
-    printf '%s%s %-*s %s%s\n' "$_cb_frm" "$_cb_v" 50 "$_cb_rule" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%s%s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_lbl" '[ TOOL ]     : ' "$_cb_val" "$((_cb_w - 15))" "$_cb_tool" \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%s%s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_lbl" '[ ENGINE ]   : ' "$_cb_val" "$((_cb_w - 15))" 'SCRIPTMONKS CRYPTOGRAPHY ENGINE' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%s%s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_lbl" '[ VERSION ]  : ' "$_cb_val" "$((_cb_w - 15))" "$_cb_ver" \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%s%s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_lbl" '[ SECURITY ] : ' "$_cb_ok" "$((_cb_w - 15))" 'ENCRYPTED / ACTIVE SESSION' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %-*s %s%s\n' "$_cb_frm" "$_cb_v" 50 "$_cb_rule" "$_cb_v" "$_cb_rst"
-    printf '%s%s %*s %s%s\n' "$_cb_frm" "$_cb_v" "$_cb_w" '' "$_cb_v" "$_cb_rst"
-    printf '%s%s %-*s %s%s\n' "$_cb_frm" "$_cb_v" 50 "$_cb_rule" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_diml" "$_cb_w" '[ DISCLAIMER ]' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_dim" "$_cb_w" 'This tool is developed strictly for educational and instructional' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_dim" "$_cb_w" 'purposes. While modern security relies on mathematical foundations,' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_dim" "$_cb_w" 'this repository was designated "Cryptography" primarily for its' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %s%-*s%s %s%s\n' \
-        "$_cb_frm" "$_cb_v" "$_cb_dim" "$_cb_w" 'compelling aesthetic appeal.' \
-        "$_cb_rst" "$_cb_v" "$_cb_rst"
-    printf '%s%s %-*s %s%s\n' "$_cb_frm" "$_cb_v" 50 "$_cb_rule" "$_cb_v" "$_cb_rst"
-    printf '%s%s%s%s%s\n' "$_cb_frm" "$_cb_bl" "$_cb_bar" "$_cb_br" "$_cb_rst"
+    printf '%s%s %s %s%s\n' "$_cb_frm" "$_cb_v" "$_cb_rule" "$_cb_v" "$_cb_rst"
 
-    printf '\n'
-    printf '%s%s%s\n' "$_cb_frm" "$_cb_rule" "$_cb_rst"
+    _print_line() {
+        local lbl="$1" val="$2" val_color="$3"
+        local plain_text="[ $lbl ] : $val"
+        local pad=$(( _cb_w - ${#plain_text} ))
+        printf '%s%s %s[ %s ] : %s%s%*s %s%s\n' \
+            "$_cb_frm" "$_cb_v" "$_cb_lbl" "$lbl" "$val_color" "$val" \
+            "$pad" '' "$_cb_rst$_cb_frm" "$_cb_v" "$_cb_rst"
+    }
+
+    _print_line "TOOL" "$_cb_tool" "$_cb_val"
+    _print_line "ENGINE" "SCRIPTMONKS CRYPTOGRAPHY ENGINE" "$_cb_val"
+    _print_line "VERSION" "$_cb_ver" "$_cb_val"
+    _print_line "SECURITY" "ENCRYPTED / ACTIVE SESSION" "$_cb_ok"
+
+    printf '%s%s %s %s%s\n' "$_cb_frm" "$_cb_v" "$_cb_rule" "$_cb_v" "$_cb_rst"
+
+    _print_disc() {
+        local text="$1" color="$2"
+        local pad=$(( _cb_w - ${#text} ))
+        printf '%s%s %s%s%*s %s%s\n' \
+            "$_cb_frm" "$_cb_v" "$color" "$text" \
+            "$pad" '' "$_cb_rst$_cb_frm" "$_cb_v" "$_cb_rst"
+    }
+
+    _print_disc "[ DISCLAIMER ]" "$_cb_diml"
+    _print_disc "This tool is developed strictly for educational and instructional" "$_cb_dim"
+    _print_disc "purposes. While modern security relies on mathematical foundations," "$_cb_dim"
+    _print_disc "this repository was designated \"Cryptography\" primarily for its" "$_cb_dim"
+    _print_disc "compelling aesthetic appeal." "$_cb_dim"
+
+    printf '%s%s %s %s%s\n' "$_cb_frm" "$_cb_v" "$_cb_rule" "$_cb_v" "$_cb_rst"
+    printf '%s%s%s%s%s\n' "$_cb_frm" "$_cb_bl" "$_cb_bar" "$_cb_br" "$_cb_rst"
     printf '\n'
 }
 

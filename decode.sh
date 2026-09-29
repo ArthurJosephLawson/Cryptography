@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# ===== CRYPTOGRAPHER BANNER =====
 print_banner() {
     local -a _cb_art=(
         '_________                        __                                    .__'
@@ -143,7 +142,6 @@ ${S}11${E}) Morse Decode
 menu
 read -p "Choice: " C
 
-# ===== Decoders =====
 
 binary_decode() {
 for b in $INPUT; do
@@ -167,7 +165,6 @@ done
 echo
 }
 
-# ===== Morse Decoder =====
 morse_decode() {
 
 declare -A M=(
@@ -187,7 +184,6 @@ done
 echo
 }
 
-# ===== Menu Logic =====
 
 case $C in
 1) binary_decode ;;

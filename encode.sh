@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# ===== CRYPTOGRAPHER BANNER =====
 print_banner() {
     local -a _cb_art=(
         '_________                        __                                    .__'
@@ -116,7 +115,6 @@ print_banner() {
 
 print_banner
 
-# ===== Colors (minimal highlights) =====
 H="\033[1;36m"
 S="\033[1;32m"
 E="\033[0m"
@@ -144,7 +142,6 @@ ${S}11${E}) Custom Base (2-36)
 menu
 read -p "Choice: " C
 
-# ===== Functions =====
 
 to_binary() {
 echo -n "$INPUT" | od -An -t u1 | \
